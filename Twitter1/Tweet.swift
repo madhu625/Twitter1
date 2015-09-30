@@ -13,6 +13,7 @@ class Tweet: NSObject {
     var text: String?
     var createdAtString: String?
     var createdAt: NSDate?
+    var time:String?
     //var dictionary: NSDictionary?
     
     init(dictionary: NSDictionary){
@@ -24,7 +25,23 @@ class Tweet: NSObject {
         
         var formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        
         createdAt = formatter.dateFromString(createdAtString!)
+        
+        let now = NSDate()
+        
+        let timeDiff = Int(now.timeIntervalSinceDate(createdAt!))
+        let minutes = (timeDiff / 60) % 60
+        let hours = (timeDiff / 3600)
+        
+        if (hours > 23){
+            time = String(format: "%01dh %01dm", hours, minutes)
+        } else if (hours > 0) {
+            time = String(format: "%01dh %01dm", hours, minutes)
+        } else {
+            time = String(format: "%01dm", minutes)
+        }
+
         
     }
     
