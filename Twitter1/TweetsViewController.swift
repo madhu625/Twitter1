@@ -41,7 +41,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.barTintColor = UIColor.blueColor()
         //CAE5FF
         self.navigationController!.navigationBar.barTintColor = UIColor(red:0.52, green:0.76, blue:1.00, alpha:0.0)
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
