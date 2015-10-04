@@ -80,7 +80,33 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
             self.refreshControl.endRefreshing()
         })
     }
-
+    
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("detailsSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        print(segue.identifier)
+        if (segue.identifier != "detailsSegue"){
+        } else {
+            let cell = sender as! TwitterCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = self.tweets![indexPath!.row]
+            let detailsViewController = segue.destinationViewController as! DetailsViewController
+            
+            print(detailsViewController)
+            
+            detailsViewController.currentTweet = tweet
+            
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     
 
 }
